@@ -1,13 +1,16 @@
 // Setting up Node-Express application
 import bodyParser from "body-parser";
 import cors from "cors";
-import express from "express";
+import express,{ Request, Response, NextFunction } from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import { createConnection } from "./db-init/dbConnection";
 import users from "./routes/user";
 import userFiles from "./routes/userFiles";
 import error from "./middlewares/error";
+import route1 from "./routes/route1";
+
+
 
 // In case of production environment, disable console logs
 if (process.env.NODE_ENV === "production") {
@@ -56,9 +59,28 @@ app.use(
   })
 );
 
+// let previousRoute = null;
+// let queueArray = [];
+
+// const checkRoute = (req:Request,currentRoute:string)=>{
+  
+//   if(currentRoute !== previousRoute){
+ 
+//     previousRoute = currentRoute;
+//   }
+
+//   else {
+//     const { id } = req.params;
+//     queueArray.push()
+//   }
+// }
+
+
 // Routes
 app.use("/api/user", users);
 app.use("/api/user-file", userFiles);
+app.use('/api/route1', route1);
+app.use('/api/route2', route1);
 
 app.use(error);
 

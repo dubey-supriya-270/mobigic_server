@@ -8,6 +8,7 @@ export let database: mongoose.Connection;
 export const createConnection = () => {
   // URI based on Environment
   const uri = process.env.NODE_ENV == "test" ? mongoTestURL : mongoURL;
+
   if (database) {
     return;
   }
